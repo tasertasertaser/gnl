@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cschulle <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cschulle <cschulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 13:50:02 by cschulle          #+#    #+#             */
-/*   Updated: 2019/01/24 16:55:46 by cschulle         ###   ########.fr       */
+/*   Updated: 2019/06/01 11:53:48 by cschulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@
 **		• -1 = an error occurred
 ** -
 */
-#include "get_next_line.h"
+
+#include "libft.h"
 
 void	ft_strcjoinfree(char **old, char *new, char c)
 {
@@ -64,7 +65,7 @@ int		get_next_line(const int fd, char **line)
 {
 	static char		*extra[FD_MAX + 1];
 
-	if (!line || fd < 0 ||
+	if (!line || fd < 0 || fd > FD_MAX ||
 			read(fd, extra[fd], 0) < 0 || !(*line = ft_strnew(1)))
 		return (-1);
 	if (extra[fd])
