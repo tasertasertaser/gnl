@@ -6,7 +6,7 @@
 /*   By: cschulle <cschulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 13:50:02 by cschulle          #+#    #+#             */
-/*   Updated: 2019/06/01 11:53:48 by cschulle         ###   ########.fr       */
+/*   Updated: 2019/09/17 14:08:32 by cschulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@
 **		• -1 = an error occurred
 ** -
 */
-
-#include "libft.h"
+#include "get_next_line.h"
 
 void	ft_strcjoinfree(char **old, char *new, char c)
 {
@@ -89,3 +88,32 @@ int		get_next_line(const int fd, char **line)
 	else
 		return (1);
 }
+
+/************************/
+// TESTMAIN FOR TESTING //
+/************************/
+
+#include <stdio.h>
+#include <fcntl.h>
+#include <unistd.h>
+int main(int ac, char *av)
+{
+	char *file;
+	if (ac == 2)
+		file = av[1];
+	else
+		file = "readme.txt";
+	int fd = open(file, O_RDONLY);
+	char *line;
+
+	line = malloc(sizeof(char) * BUFF_SIZE);
+	int flag = 1;
+
+	while(flag == 1)
+	{
+		flag = get_next_line(fd, &line);
+		printf("%s\n", line);
+	}
+	return(0);
+}
+

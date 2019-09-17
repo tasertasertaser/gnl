@@ -1,8 +1,4 @@
-callenmain.c
-./Makefile
+._*
 *.o
 *.out
 *.dSYM
-*.txt
-main.c
-libft
